@@ -28,10 +28,11 @@ return new class extends Migration
                 $table->date('issue_date');
                 $table->date('issue_end');
                 $table->string('issue_place');
-                $table->string('passport_number');
+                $table->string('passport_number')->unique();
                 $table->string('photo');
                 $table->string('sex');
                 $table->string('national_number');
+                $table->timestamps();
         });
     }
 

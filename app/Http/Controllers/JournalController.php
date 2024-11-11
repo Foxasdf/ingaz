@@ -3,54 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Journal;
+use App\Models\Account;
+use App\Models\Coin;
+use App\Models\Voutcher;
+use App\Models\Passport;
 use Illuminate\Http\Request;
 
 class JournalController extends Controller
 {
     public function index()
     {
-        $journals = Journal::all();
+        $journals = Journal::with(['deptAccount', 'creditAccount', 'coinRelation', 'voutcher', 'passport'])->get();
         return view('journals.index', compact('journals'));
-    }
-
-    public function create()
-    {
-        return view('journals.create');
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            // Add validation rules here
-        ]);
-
-        Journal::create($data);
-        return redirect()->route('journals.index')->with('success', 'Journal created successfully.');
     }
 
     public function show(Journal $journal)
     {
+        $journal->load(['deptAccount', 'creditAccount', 'coinRelation', 'voutcher', 'passport']);
         return view('journals.show', compact('journal'));
     }
 
-    public function edit(Journal $journal)
+    public function create()
     {
-        return view('journals.edit', compact('journal'));
+        $accounts = Account::all();
+        $coins = Coin::all();
+        $voutchers = Voutcher::all();
+        $passports = Passport::all();
+        return view('journals.create', compact('accounts', 'coins', 'voutchers', 'passports'));
     }
 
-    public function update(Request $request, Journal $journal)
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            // Add validation rules here
+        $validatedData = $request->validate([
+            'acount_dept' => 'required|exists:accounts,account_id',
+            'acount_cridit' => 'required|exists:accounts,account_id',
+            'cridit' => 'required|numeric|min:0',
+            'dept' => 'required|numeric|min:0',
+            'coin' => 'required|exists:coins,coin_id',
+            'coin_price' => 'required|numeric|min:0',
+            'operation_date' => 'required|date',
+            'memo' => 'required|string',
+            'voutcher_id' => 'required|exists:voutchers,voutcher_id',
+            'passport_id' => 'required|exists:passports,passport_id',
         ]);
 
-        $journal->update($data);
-        return redirect()->route('journals.index')->with('success', 'Journal updated successfully.');
-    }
+        // The 'cridit' and 'dept' fields now contain the converted values
+        Journal::create($validatedData);
 
-    public function destroy(Journal $journal)
-    {
-        $journal->delete();
-        return redirect()->route('journals.index')->with('success', 'Journal deleted successfully.');
+        return redirect()->route('journals.index')->with('success', 'Journal created successfully.');
     }
 }

@@ -2,22 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Voutcher_type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Voutcher-type>
- */
-class VoutcherTypeFactory extends Factory
+class Voutcher_typeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Voutcher_type::class;
+
+    public function definition()
     {
         return [
-            //
+            'voutcher_type' => $this->faker->unique()->word(),
         ];
     }
 }

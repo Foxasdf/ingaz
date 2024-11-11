@@ -11,6 +11,10 @@ class Voutcher_type extends Model
     protected $table = 'voutcher_types';
     protected $primaryKey = 'type_id';
 
+    protected $fillable = [
+        'voutcher_type'
+    ];
+
     public function voutchers()
     {
         return $this->hasMany(Voutcher::class, 'voutcher_type', 'type_id');

@@ -36,4 +36,9 @@ class Passport extends Model
     {
         return $this->hasMany(Journal::class, 'passport_id', 'passport_id');
     }
+    public function subVoutchers()
+    {
+        return $this->hasMany(Sub_voutcher::class, 'passport', 'passport_number');
+    }
+
 }

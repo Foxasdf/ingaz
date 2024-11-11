@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Journal extends Model
 {
     use HasFactory;
-    protected $table = 'journal';
+    protected $table = 'journals';
     protected $primaryKey = 'journal_id';
 
     protected $fillable = [
@@ -24,6 +24,8 @@ class Journal extends Model
         'passport_id',
     ];
 
+    //Relations
+
     public function deptAccount()
     {
         return $this->belongsTo(Account::class, 'acount_dept', 'account_id');
@@ -34,9 +36,9 @@ class Journal extends Model
         return $this->belongsTo(Account::class, 'acount_cridit', 'account_id');
     }
 
-    public function coin()
+    public function coinRelation()
     {
-        return $this->belongsTo(Coin::class, 'coins', 'coin_id');
+        return $this->belongsTo(Coin::class, 'coin', 'coin_id');
     }
 
     public function voutcher()

@@ -3,21 +3,20 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Coin;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Coin>
- */
 class CoinFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Coin::class;
+
+    protected $coinNames = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'CHF', 'CNY', 'SYR', 'RUB', 'INR'];
+
+    public function definition()
     {
+        static $index = 0;
         return [
-            //
+            'coin_name' => $this->coinNames[$index++ % count($this->coinNames)],
+            'coin_price' => $this->faker->randomFloat(2, 0.1, 100),
         ];
     }
 }

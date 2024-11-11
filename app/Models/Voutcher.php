@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Voutcher extends Model
 {
     use HasFactory;
-    protected $table = 'voutcher';
+    protected $table = 'voutchers'; 
     protected $primaryKey = 'voutcher_id';
 
     protected $fillable = [

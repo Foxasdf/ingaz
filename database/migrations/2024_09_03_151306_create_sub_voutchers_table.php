@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('operatin_type');
             $table->timestamps();
     
+            $table->foreign('passport')->references('passport_number')->on('passports')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('vouchter')->references('voutcher_id')->on('voutchers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('cost_coin')->references('coin_id')->on('coins')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('sell_coin')->references('coin_id')->on('coins')->onUpdate('cascade')->onDelete('cascade');
