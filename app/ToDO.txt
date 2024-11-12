@@ -1,4 +1,10 @@
-make the coins name unique
+//make the coins name unique
 fix passport in voutcher (make relation)
-make passport
+fix passport in sub_voutcher (fix the clickable link)
+change vouchar viewable list
+make edit/make/delete for all the tables
+make the coin price change inside the new journals
+make editable sub-voucher page
+make the account check boxes
 make the routes code cleaner (groups)
+make it possible to add passport image

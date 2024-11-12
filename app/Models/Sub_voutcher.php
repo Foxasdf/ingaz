@@ -43,6 +43,6 @@ class Sub_voutcher extends Model
     }
     public function passport()
     {
-        return $this->belongsTo(Passport::class, 'passport', 'passport_id');
+        return $this->belongsTo(Passport::class, 'passport', 'passport_number');
     }
 }

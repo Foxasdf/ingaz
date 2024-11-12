@@ -13,6 +13,11 @@
             border-radius: 15px;
         }
     </style>
+    @if (session('success'))
+    <div class="alert alert-success mt-4">
+        {{ session('success') }}
+    </div>
+@endif
 </head>
 <body>
 
@@ -64,8 +69,6 @@
                             <dt class="col-sm-4">Owner:</dt>
                             <dd class="col-sm-8">{{ $account->woner ? 'Yes' : 'No' }}</dd>
 
-                            <dt class="col-sm-4">Owner:</dt>
-                            <dd class="col-sm-8">{{ $account->woner ? 'Yes' : 'No' }}</dd>
 
                             <dt class="col-sm-4">Percentage:</dt>
                             <dd class="col-sm-8">{{ $account->persantage }}%</dd>
@@ -125,7 +128,15 @@
 
                         <div class="mt-4">
                             <a href="{{ route('accounts.index') }}" class="btn btn-primary">Back to List</a>
-                        </div>
+                            <a href="{{ route('accounts.edit', $account->account_id) }}" class="btn btn-secondary">Edit Account</a>
+                            @if (!$account->journalDepts()->exists() && !$account->journalCredits()->exists())
+                                <form action="{{ route('accounts.destroy', $account->account_id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                                </form>
+                            @endif
+                        </div>                        
                     </div>
                 </div>
             </div>

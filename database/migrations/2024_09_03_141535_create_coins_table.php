@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('coins', function (Blueprint $table) {
             $table->id('coin_id');
-            $table->string('coin_name')->unique(); // This line is already correct
+            $table->string('coin_name')->unique(); 
             $table->decimal('coin_price', 10, 2)->default(1);
             $table->timestamps();
         });

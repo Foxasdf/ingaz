@@ -31,7 +31,10 @@ class Passport extends Model
         'sex',
         'national_number',
     ];
-
+    public function getRouteKeyName()
+    {
+        return 'passport_number';
+    }
     public function journals()
     {
         return $this->hasMany(Journal::class, 'passport_id', 'passport_id');

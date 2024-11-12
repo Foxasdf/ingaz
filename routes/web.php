@@ -41,6 +41,9 @@ Route::get('/journals/{journal}', [JournalController::class, 'show'])->name('jou
 
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
 Route::get('/accounts/{account}', [AccountController::class, 'show'])->name('accounts.show');
+Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
+Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('accounts.update');
+Route::delete('/accounts/{account}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
 
 Route::get('/passports', [PassportController::class, 'index'])->name('passports.index');

@@ -38,7 +38,12 @@
                             </dd>
 
                             <dt class="col-sm-4">Passport:</dt>
-                            <dd class="col-sm-8">{{ $subVoutcher->passport }}</dd>
+                            <dd class="col-sm-8">
+                                <a href="{{ route('passports.show', $subVoutcher->passport) }}">
+                                    {{ $subVoutcher->passport }}
+                                </a>
+                            </dd>
+                            
 
                             <dt class="col-sm-4">Supplier:</dt>
                             <dd class="col-sm-8">{{ $subVoutcher->suplyer }}</dd>

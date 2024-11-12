@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('woner');
             $table->integer('persantage');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,6 +36,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('accounts');
     }
 };

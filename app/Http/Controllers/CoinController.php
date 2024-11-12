@@ -35,4 +35,5 @@ class CoinController extends Controller
 
         return response()->json(['message' => 'Coin price updated successfully'], 200);
     }
+    
 }

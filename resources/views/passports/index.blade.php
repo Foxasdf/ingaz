@@ -54,7 +54,7 @@
                                                 <td>{{ $passport->passport_number }}</td>
                                                 <td>{{ $passport->nationalty }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('passports.show', $passport->passport_id) }}" class="btn btn-outline-primary btn-sm">
+                                                    <a href="{{ route('passports.show', $passport->passport_number) }}" class="btn btn-outline-primary btn-sm">
                                                         <i class="fas fa-eye"></i> View
                                                     </a>
                                                 </td>
