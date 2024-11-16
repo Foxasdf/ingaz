@@ -15,9 +15,13 @@ Route::get('/', function () {
 
 
 Route::get('/coins', [CoinController::class, 'index'])->name('coins.index');
-Route::get('/coins/{id}', [CoinController::class, 'show'])->name('coins.show');
+Route::post('/coins', [CoinController::class, 'store'])->name('coins.store');
+Route::get('/coins/create', [CoinController::class, 'create'])->name('coins.create');
 Route::post('/update-coin-price', [CoinController::class, 'updatePrice'])->name('coins.updatePrice');
-
+Route::delete('/coins/{id}', [CoinController::class, 'destroy'])->name('coins.destroy');
+Route::get('/coins/{id}/edit', [CoinController::class, 'edit'])->name('coins.edit');
+Route::put('/coins/{id}', [CoinController::class, 'update'])->name('coins.update');
+Route::get('/coins/{id}', [CoinController::class, 'show'])->name('coins.show');
 
 
 Route::get('/voutchers', [VoutcherController::class, 'index'])->name('voutchers.index');
@@ -40,6 +44,8 @@ Route::get('/journals/{journal}', [JournalController::class, 'show'])->name('jou
 
 
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
+Route::get('/accounts/create',  [AccountController::class, 'create'])->name('accounts.create');
+Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store'); // Corrected line
 Route::get('/accounts/{account}', [AccountController::class, 'show'])->name('accounts.show');
 Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
 Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('accounts.update');

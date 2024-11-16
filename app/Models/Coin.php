@@ -28,4 +28,8 @@ class Coin extends Model
     {
         return $this->hasMany(Journal::class, 'coin', 'coin_id');
     }
+    public function hasRelations()
+    {
+        return $this->subVoutchersCost()->exists() || $this->subVoutchersSell()->exists() || $this->journals()->exists();
+    }
 }
